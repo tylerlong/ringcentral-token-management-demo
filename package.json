@@ -1,0 +1,6 @@
+{
+  "devDependencies": {
+    "http-server": "^0.12.3",
+    "yarn-upgrade-all": "^0.5.4"
+  }
+}
