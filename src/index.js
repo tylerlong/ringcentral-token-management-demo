@@ -1,9 +1,25 @@
 import SDK from '@ringcentral/sdk';
 
+const redirectUri = window.location.origin + window.location.pathname;
+
 const rcsdk = new SDK({
-  server: SDK.server.sandbox,
-  clientId: 'svH9oHPYR_CwZpkop5OXow',
-  clientSecret: 'hPFD5hGhR-6wh8vpY91ZPAo3FoMFRRQOmTc-u1jdAaPg',
-  redirectUri: 'http://localhost:8080'
+  server: process.env.RINGCENTRAL_SERVER_URL,
+  clientId: process.env.RINGCENTRAL_CLIENT_ID,
+  clientSecret: process.env.RINGCENTRAL_CLIENT_SECRET,
+  redirectUri
 });
-console.log(rcsdk);
+
+const platform = rcsdk.platform();
+
+let urlSearchParams = new URLSearchParams(new URL(window.location.href).search);
+const code = urlSearchParams.get('code');
+
+if(code === null) {
+  // login
+  const loginUrl = platform.loginUrl({
+    redirectUri
+  });
+  console.log(loginUrl);
+} else {
+  // exchange code for token
+}
