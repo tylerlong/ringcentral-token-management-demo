@@ -10,7 +10,7 @@ const rcsdk = new SDK({
 
 const platform = rcsdk.platform();
 
-let urlSearchParams = new URLSearchParams(new URL(window.location.href).search);
+const urlSearchParams = new URLSearchParams(new URL(window.location.href).search);
 const code = urlSearchParams.get('code');
 
 if(code === null) {
