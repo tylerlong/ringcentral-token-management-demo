@@ -1,4 +1,4 @@
-# ringcentral-oauth-code-flow-js-easiest
+# ringcentral-token-management-demo
 
 
 ## Setup
