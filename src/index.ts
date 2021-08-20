@@ -80,7 +80,6 @@ const addLoginLink = () => {
   } else {
     platform.auth().setData(token);
     try {
-      await platform.refresh();
       await fetchCallLogs();
     } catch (e) {
       console.log(e); // most likely refresh token expired
