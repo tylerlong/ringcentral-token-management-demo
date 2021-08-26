@@ -11,7 +11,6 @@ const redirectUri = window.location.origin + window.location.pathname;
 const rcsdk = new SDK({
   server: process.env.RINGCENTRAL_SERVER_URL,
   clientId: process.env.RINGCENTRAL_CLIENT_ID,
-  clientSecret: process.env.RINGCENTRAL_CLIENT_SECRET,
 });
 const platform = rcsdk.platform();
 
@@ -37,6 +36,7 @@ const fetchCallLogs = async () => {
 const addLoginLink = () => {
   const loginUrl = platform.loginUrl({
     redirectUri,
+    usePKCE: true,
   });
   console.log(loginUrl);
   const link = document.createElement('a');
