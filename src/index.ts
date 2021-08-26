@@ -7,7 +7,7 @@ const authCodeKey = 'ringcentral-token-management-demo-auth-code';
 const tokenKey = 'ringcentral-token-management-demo-token';
 const redirectUri = window.location.origin + window.location.pathname;
 
-// initiate RingCentral SDK
+// initialize RingCentral SDK
 const rcsdk = new SDK({
   server: process.env.RINGCENTRAL_SERVER_URL,
   clientId: process.env.RINGCENTRAL_CLIENT_ID,
@@ -46,7 +46,7 @@ const addLoginLink = () => {
   link.onclick = () => {
     const popupWindow = window.open(
       loginUrl,
-      'windowName',
+      'Login RingCentral',
       'width=300,height=400'
     );
     const handle = setInterval(async () => {
@@ -54,6 +54,7 @@ const addLoginLink = () => {
       if (code !== null) {
         popupWindow?.close();
         link.remove();
+        localforage.removeItem(authCodeKey);
         clearInterval(handle);
         await platform.login({code, redirect_uri: redirectUri});
         await fetchCallLogs();
